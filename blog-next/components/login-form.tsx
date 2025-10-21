@@ -29,6 +29,8 @@ export function LoginForm({
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const supabase = createClient();
+    console.log("supabase",supabase);
+    
     setIsLoading(true);
     setError(null);
 
