@@ -20,7 +20,7 @@ export default function NewPostClient() {
             // 创建新文章并返回插入的数据
             // insert([{ title, content }]) - 插入包含标题和内容的新记录
             // select() - 返回插入的记录数据
-            const { data, error } = await supabase.from('notes').insert([{ title, content }]).select();
+            const { error } = await supabase.from('notes').insert([{ title, content }]).select();
 
             if (error) {
                 throw error;
@@ -49,49 +49,36 @@ export default function NewPostClient() {
                         <label htmlFor="title" className="block text-sm font-medium mb-1">
                             标题
                         </label>
-                        <input 
-                            id="title" 
-                            type="text" 
-                            value={title} 
-                            onChange={(e) => setTitle(e.target.value)} 
-                            required 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                            placeholder="输入文章标题" 
-                            aria-describedby="title-help"
-                        />
-                        <p id="title-help" className="text-sm text-gray-500 mt-1">请输入文章标题</p>
+                        <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入文章标题" aria-describedby="title-help" />
+                        <p id="title-help" className="text-sm text-gray-500 mt-1">
+                            请输入文章标题
+                        </p>
                     </div>
 
                     <div>
                         <label htmlFor="content" className="block text-sm font-medium mb-1">
                             内容
                         </label>
-                        <textarea 
-                            id="content" 
-                            value={content} 
-                            onChange={(e) => setContent(e.target.value)} 
-                            required 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[200px]" 
-                            placeholder="输入文章内容" 
+                        <textarea
+                            id="content"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[200px]"
+                            placeholder="输入文章内容"
                             aria-describedby="content-help"
                         />
-                        <p id="content-help" className="text-sm text-gray-500 mt-1">请输入文章内容</p>
+                        <p id="content-help" className="text-sm text-gray-500 mt-1">
+                            请输入文章内容
+                        </p>
                     </div>
 
                     <div className="flex gap-2">
-                        <button 
-                            type="submit" 
-                            disabled={loading} 
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-                        >
+                        <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50">
                             {loading ? '创建中...' : '创建文章'}
                         </button>
 
-                        <button 
-                            type="button" 
-                            onClick={() => router.back()} 
-                            className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                        >
+                        <button type="button" onClick={() => router.back()} className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                             取消
                         </button>
                     </div>

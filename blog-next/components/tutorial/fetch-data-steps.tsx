@@ -1,5 +1,5 @@
-import { TutorialStep } from "./tutorial-step";
-import { CodeBlock } from "./code-block";
+import { TutorialStep } from './tutorial-step';
+import { CodeBlock } from './code-block';
 
 const create = `-- 创建 notes 表，包含自增主键和文本字段
 create table notes (
@@ -62,9 +62,9 @@ export default function Page() {
 `.trim();
 
 export function FetchDataSteps() {
-  return (
-    <ol className="flex flex-col gap-6">
-      <TutorialStep title="Create some tables and insert some data">
+    return (
+        <ol className="flex flex-col gap-6">
+            {/* <TutorialStep title="Create some tables and insert some data">
         <p>
           Head over to the{" "}
           <a
@@ -169,7 +169,7 @@ export function FetchDataSteps() {
 
       <TutorialStep title="Build in a weekend and scale to millions!">
         <p>You&apos;re ready to launch your product to the world! 🚀</p>
-      </TutorialStep>
-    </ol>
-  );
+      </TutorialStep> */}
+        </ol>
+    );
 }
