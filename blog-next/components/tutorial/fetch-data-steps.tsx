@@ -1,11 +1,13 @@
 import { TutorialStep } from "./tutorial-step";
 import { CodeBlock } from "./code-block";
 
-const create = `create table notes (
+const create = `-- 创建 notes 表，包含自增主键和文本字段
+create table notes (
   id bigserial primary key,
   title text
 );
 
+-- 向 notes 表插入示例数据
 insert into notes(title)
 values
   ('Today I created a Supabase project.'),
@@ -13,7 +15,10 @@ values
   ('It was awesome!');
 `.trim();
 
-const rls = `alter table notes enable row level security;
+const rls = `-- 为 notes 表启用行级安全策略
+alter table notes enable row level security;
+
+-- 创建策略，允许公共读取访问
 create policy "Allow public read access" on notes
 for select
 using (true);`.trim();
@@ -22,6 +27,10 @@ const server = `import { createClient } from '@/lib/supabase/server'
 
 export default async function Page() {
   const supabase = await createClient()
+  
+  // SQL: SELECT * FROM notes
+  // 查询所有文章记录
+  // select() - 选择所有字段
   const { data: notes } = await supabase.from('notes').select()
 
   return <pre>{JSON.stringify(notes, null, 2)}</pre>
@@ -39,6 +48,9 @@ export default function Page() {
 
   useEffect(() => {
     const getData = async () => {
+      // SQL: SELECT * FROM notes
+      // 查询所有文章记录
+      // select() - 选择所有字段
       const { data } = await supabase.from('notes').select()
       setNotes(data)
     }

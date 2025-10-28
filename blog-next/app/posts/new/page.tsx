@@ -16,6 +16,10 @@ export default function NewPost() {
         setLoading(true);
 
         try {
+            // SQL: INSERT INTO notes (title, content) VALUES ($1, $2) RETURNING *
+            // 创建新文章并返回插入的数据
+            // insert([{ title, content }]) - 插入包含标题和内容的新记录
+            // select() - 返回插入的记录数据
             const { data, error } = await supabase.from('notes').insert([{ title, content }]).select();
 
             if (error) {
@@ -49,7 +53,14 @@ export default function NewPost() {
                     <label htmlFor="content" className="block text-sm font-medium mb-1">
                         内容
                     </label>
-                    <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[200px]" placeholder="输入文章内容" />
+                    <textarea 
+                        id="content" 
+                        value={content} 
+                        onChange={(e) => setContent(e.target.value)} 
+                        required 
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[200px]" 
+                        placeholder="输入文章内容" 
+                    />
                 </div>
 
                 <div className="flex gap-2">
