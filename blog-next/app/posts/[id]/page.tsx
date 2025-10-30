@@ -3,13 +3,6 @@ import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-// type NoteObj = {
-//   id: number;
-//   title: string;
-//   content: string;
-//   created_at?: string;
-// };
-
 type Props = {
     params: Promise<{ id: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
